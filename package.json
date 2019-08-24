@@ -1,0 +1,28 @@
+{
+  "name": "sudoku-challange",
+  "version": "1.0.0",
+  "description": "testing sudoku problems",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cemusta/Sudoku-Challange.git"
+  },
+  "keywords": [
+    "sudoku"
+  ],
+  "author": "Cem Usta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cemusta/Sudoku-Challange/issues"
+  },
+  "homepage": "https://github.com/cemusta/Sudoku-Challange#readme",
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-google": "^0.13.0"
+  }
+}
