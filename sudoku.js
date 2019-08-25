@@ -1,25 +1,28 @@
-var _ = require('lodash')
+// var _ = require('lodash')
 // const util = require('./utilities')
 
 const square_size = 3
-const possibilities = [1,2,3,4,5,6,7,8,9]
+const board_size = 9
+// const possibilities = [1,2,3,4,5,6,7,8,9]
 
-let validation = {
+const validation = {
     failed: 'failed',
-    partial: 'contains empty',
+    partial: 'partial',
     ok: 'ok'
 }
 
 const checkDiff = (val) => {
-    if(val.includes(0)){
+
+    val = val.filter(x=> x !== 0)
+
+    if((new Set(val)).size !== val.length) { // duplicates
+        return validation.failed
+    }
+
+    if(val.length < board_size){
         return validation.partial
     }
 
-    let diff = _.difference(val, possibilities)
-    if(diff.length > 0)
-    {
-        return validation.failed
-    }
     return validation.ok
 }
 
@@ -41,8 +44,8 @@ const validateColumn = (sudoku, y) => {
 const validateSquare = (sudoku, _x, _y) => {
     let val = []
 
-    for (let x = _x; x < square_size ; x++) {
-        for (let y = _y; y < square_size ; y++) {
+    for (let x = _x; x < _x + square_size ; x++) {
+        for (let y = _y; y < _y + square_size ; y++) {
             val.push(sudoku[x][y])
         }
     }
@@ -68,16 +71,18 @@ const findAndValidateSquare = (sudoku, _x, _y) => {
 exports.validateAll = (sudoku) => {
     // check rows
     for (let x = 0; x < sudoku.length; x++) {
-        if( validateRow(sudoku,x) === validation.failed ){
-            console.log(`not valid on row:${x}`)
+        let val_result = validateRow(sudoku,x)
+        if( val_result === validation.failed ){
+            // console.log(`not valid on row:${x}`)
             return false
         }
     }
 
     // check columns
     for (let y = 0; y < sudoku.length; y++) {
-        if( validateColumn(sudoku,y) === validation.failed ){
-            console.log(`not valid on column:${y}`)
+        let val_result = validateColumn(sudoku,y)
+        if( val_result === validation.failed ){
+            // console.log(`not valid on column:${y}`)
             return false
         }
     }
@@ -85,8 +90,9 @@ exports.validateAll = (sudoku) => {
     // check squares
     for (let x = 0; x < square_size ; x++) {
         for (let y = 0; y < square_size ; y++) {
-            if( validateSquare(sudoku, (x*square_size), (y*square_size)) === validation.failed ){
-                console.log(`not valid on square:${x}-${y}`)
+            let val_result = validateSquare(sudoku, (x*square_size), (y*square_size))
+            if( val_result === validation.failed ){
+                // console.log(`not valid on square:${x}-${y}`)
                 return false
             }
         }
@@ -201,7 +207,7 @@ exports.solve = (_sudoku, optimize) => {
         } while (improvement)
     }
 
-    console.log('starting backtrack brute force\n')
+    console.log('starting backtrack brute force')
 
     solution = backtrack(solution, pos, optimize, 0)
 
@@ -214,7 +220,7 @@ const backtrack = (sudoku, pos, optimize, depth) => {
 
     // 1- validate state, cancel tree if not valid
     if( !this.validateAll(sudoku) ) {
-        console.log('not valid, returning')
+        // console.log('not valid, returning')
         return null
     }
 
