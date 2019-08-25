@@ -17,21 +17,47 @@ let puzzle = [
 ]
 
 const main = () => {
-    let t0 = performance.now()
+    // process.setMaxListeners(0)
 
     util.print(puzzle)
 
-    let pos = sudoku.populateOptions(puzzle)
+    console.log('puzzle:', util.export(puzzle))
 
-    util.print(pos)
+    {
+        let t0 = performance.now()
+        console.log('non-optimized backtrack algorithm')
 
-    sudoku.validateCell(puzzle, 5,5)
+        let solution = sudoku.solve(puzzle, false)
 
-    // let solved = backtrack(puzzle, pos) // TODO: implement brute force.
+        if(!solution) {
+            console.log('\nfailed to find a solution...\n\n\n')
+        } else {
 
-    let t1 = performance.now()
+            console.log('\ndone:\n')
 
-    console.log(`done in ${(t1-t0).toFixed(2)}ms`)
+            util.print(solution)
+        }
+        let t1 = performance.now()
+        console.log(`finished in ${(t1-t0).toFixed(2)}ms`)
+    }
+
+    // {
+    //     let t0 = performance.now()
+    //     console.log('optimized backtrack algorithm')
+
+    //     let solution = sudoku.solve(puzzle, true)
+
+    //     if(!solution) {
+    //         console.log('\nfailed to find a solution...\n\n\n')
+    //     } else {
+
+    //         console.log('\ndone:\n')
+
+    //         util.print(solution)
+    //     }
+    //     let t1 = performance.now()
+    //     console.log(`finished in ${(t1-t0).toFixed(2)}ms`)
+    // }
 }
 
 main()

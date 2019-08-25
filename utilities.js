@@ -5,14 +5,15 @@ exports.print = (sudoku) => {
         row.forEach((cell_val, square_index) => {
 
             if(typeof cell_val === 'object'){
-                print_string += cell_val.length + ' '
+                print_string += `[${cell_val}]`
+                // print_string += cell_val.length + ' '
             } else if(cell_val === 0){
                 print_string += '_ '
             } else {
                 print_string += cell_val + ' '
             }
 
-            // end of group
+            // end of line
             if(square_index % 3 === 2){
                 print_string += ' '
             }
@@ -27,4 +28,22 @@ exports.print = (sudoku) => {
     })
 
     console.log(print_string)
+}
+
+// for testing puzzle and solutions via external solvers
+exports.export = (sudoku) => {
+    let export_string = ''
+    sudoku.forEach((row) => {
+        row.forEach((cell_val) => {
+
+            if(cell_val === 0){
+                export_string += '.'
+            } else {
+                export_string += cell_val
+            }
+
+        })
+    })
+
+    return export_string
 }
