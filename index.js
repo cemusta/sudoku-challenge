@@ -2,22 +2,11 @@ const { performance } = require('perf_hooks')
 const util = require('./utilities')
 const sudoku = require('./sudoku')
 
-let puzzle = [
-    [4,1,9, 0,8,0, 0,0,0],
-    [5,0,8, 0,0,0, 0,0,6],
-    [0,0,0, 5,0,0, 0,0,0],
+const solvePuzzle = (input) => {
 
-    [0,9,0, 6,0,0, 0,0,4],
-    [0,4,0, 0,0,0, 0,0,3],
-    [6,0,0, 2,9,0, 0,0,0],
+    console.log(`Puzzle: ${input.length}, givens:${input.length - input.split('').filter(x=> x==='.').length}\n`)
 
-    [0,0,2, 3,0,1, 0,0,0],
-    [0,0,0, 0,0,9, 2,5,0],
-    [0,7,0, 0,0,0, 0,0,0],
-]
-
-const main = () => {
-    // process.setMaxListeners(0)
+    let puzzle = util.import(input)
 
     util.print(puzzle)
 
@@ -36,6 +25,8 @@ const main = () => {
             console.log('\ndone:\n')
 
             util.print(solution)
+
+            console.log('solution:', util.export(solution))
         }
         let t1 = performance.now()
         console.log(`finished in ${(t1-t0).toFixed(2)}ms`)
@@ -60,4 +51,7 @@ const main = () => {
     // }
 }
 
-main()
+// let string_puzzle = '419.8....5.8.....6...5......9.6....4.4......36..29......23.1........925..7.......'
+let string_puzzle2 = '..26...7.....3...6.7..4.3....9...6.3.......1....81..92..6....25....5....32.4..8.9'
+
+solvePuzzle(string_puzzle2)

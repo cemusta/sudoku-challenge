@@ -8,3 +8,5 @@ Checking out sudoku challange and testing algorithms.
 
 <http://norvig.com/sudoku.html>
 <http://www.sudokudragon.com/sudokustrategy.htm#>
+<https://github.com/robatron/sudoku.js>
+<https://www.thonky.com/sudoku/solution-count>
