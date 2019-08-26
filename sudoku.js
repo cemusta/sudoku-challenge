@@ -1,4 +1,3 @@
-// var _ = require('lodash')
 // const util = require('./utilities')
 
 const square_size = 3
@@ -12,7 +11,6 @@ const validation = {
 }
 
 const checkDiff = (val) => {
-
     val = val.filter(x=> x !== 0)
 
     if((new Set(val)).size !== val.length) { // duplicates
@@ -54,7 +52,6 @@ const validateSquare = (sudoku, _x, _y) => {
 }
 
 const findAndValidateSquare = (sudoku, _x, _y) => {
-
     for (let x = 0; x < square_size ; x++) {
         if( (x*square_size) < _x )
             continue
@@ -119,7 +116,6 @@ exports.validateCell = (sudoku, _x, _y) => {
         console.log(`not valid on square containing:${_x}-${_y}`)
         return false
     }
-
 
     return true
 }
@@ -215,19 +211,14 @@ exports.solve = (_sudoku, optimize) => {
 }
 
 const backtrack = (sudoku, pos, optimize, depth) => {
-
     // console.log(`new backtracking started, depth: ${depth}`)
 
-    // 1- validate state, cancel tree if not valid
     if( !this.validateAll(sudoku) ) {
-        // console.log('not valid, returning')
         return null
     }
 
-    // 2- find first empty cell
     let cell = findNextEmptyCell(sudoku)
 
-    // 3- if no 0 means its solved.
     if(cell === null){
         return sudoku
     }
@@ -237,15 +228,12 @@ const backtrack = (sudoku, pos, optimize, depth) => {
     for (let i = 0; i < cell_possibilities.length; i++) {
         const possibility_selected = cell_possibilities[i]
 
-        // console.log(`next empty: ${cell.x}:${cell.y}, trying (${possibility_selected} out of [${cell_possibilities}])`)
-
         let solution_clone = sudoku.map(function(arr) {
             return arr.slice()
         })
 
         solution_clone[cell.x][cell.y] = possibility_selected
 
-        // // 4- optimize if possible
         if(optimize) {
             let improvement = false
             do {
@@ -260,11 +248,10 @@ const backtrack = (sudoku, pos, optimize, depth) => {
 
         let value = backtrack(solution_clone, pos_clone, optimize, ++depth)
 
-        if(value !== null) { // if not null means solved?
-            return value
+        if(value !== null) {
+            return value // solved
         }
     }
-
 
     return null // tried all but failed.
 }
@@ -295,7 +282,6 @@ const strategyOnlyOne = (sudoku, pos) => {
     }
     return false
 }
-
 
 // TODO: implement naked twin for further optimization.
 // eslint-disable-next-line no-unused-vars
