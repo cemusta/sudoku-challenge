@@ -1,9 +1,9 @@
-# Sudoku-Challange
+# sudoku-challenge
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cemusta/Sudoku-Challange/blob/master/LICENSE)
-[![CodeFactor](https://www.codefactor.io/repository/github/cemusta/sudoku-challange/badge)](https://www.codefactor.io/repository/github/cemusta/sudoku-challange)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cemusta/Sudoku-challenge/blob/master/LICENSE)
+[![CodeFactor](https://www.codefactor.io/repository/github/cemusta/sudoku-challenge/badge)](https://www.codefactor.io/repository/github/cemusta/sudoku-challenge)
 
-A repository for checking out a sudoku challange and testing algorithms.
+A repository for checking out a sudoku challenge and testing algorithms.
 
 ## How to start
 
