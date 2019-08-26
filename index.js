@@ -58,4 +58,4 @@ let top_95 = '....6...4..6.3....1..4..5.77.....8.5...8.....6.8....9...2.9....4..
 // 23 given: non-optimized: 750ms | optimized: 100ms
 let all_empty = '.................................................................................'
 
-solvePuzzle(all_empty)
+solvePuzzle(original_question)
